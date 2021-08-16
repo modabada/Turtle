@@ -10,27 +10,27 @@ import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import tray.FullTray.ShowMessageListener;
-
-public class TurtleTray implements ActionListener{
-	TrayIcon trayIcon;
-	String title;
-	String message;
-	TrayIcon.MessageType messageType;
-	
+public class TurtleTray{
 	public TurtleTray() {
+		final SystemTray tray = SystemTray.getSystemTray();
+		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Turtle.png"));
+		PopupMenu popup = new PopupMenu();
+		final TrayIcon trayIcon = new TrayIcon(image, "Turtle", popup);
+		MenuItem item;
+		
 		if (SystemTray.isSupported()) {
-			final SystemTray tray = SystemTray.getSystemTray();
-			Image image = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Turtle.png"));
-			PopupMenu popup = new PopupMenu();
-			final TrayIcon trayIcon = new TrayIcon(image, "Turtle", popup);
-			MenuItem item = new MenuItem("경고");
-			
-			item.addActionListener(new ShowMessageListener(trayIcon, "Title", "doc",
-					TrayIcon.MessageType.WARNING));
+			item = new MenuItem("경고");
+			item.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					trayIcon.displayMessage("Title", "doc", TrayIcon.MessageType.WARNING);
+				}
+			});
 			popup.add(item);
+			
 			item = new MenuItem("Close");
 			item.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					tray.remove(trayIcon);
 				}
@@ -44,10 +44,5 @@ public class TurtleTray implements ActionListener{
 		} else {
 			System.err.println("트레이를 지원하지 않습니다");
 		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		trayIcon.displayMessage(title, message, messageType);
 	}
 }
