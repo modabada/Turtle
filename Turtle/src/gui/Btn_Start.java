@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 
+import main.Main;
+
 public class Btn_Start extends Btn {
 	private static final long serialVersionUID = -8700444585506493272L;
 
@@ -35,6 +37,7 @@ public class Btn_Start extends Btn {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setIcon(image[2]);
+				Main.gui.setup("Running");
 			}
 		});
 	}

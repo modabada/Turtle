@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import tray.TurtleTray;
+
 public class GUI extends JFrame {
 	private static final long serialVersionUID = 2941318999657277463L;
 	public static final int WIDTH = 1024;
@@ -39,6 +41,10 @@ public class GUI extends JFrame {
 		case "Option":
 			add(optionPanel);
 			remove(homePanel);
+			break;
+		case "Running":
+			new TurtleTray();
+			setVisible(false);
 			break;
 		}
 		repaint();
