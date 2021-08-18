@@ -11,25 +11,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/inwoo/Downloads/javacv-0.7-bin/javacv-bin/javacpp.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/inwoo/Downloads/javacv-0.7-bin/javacv-bin/javacv.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/inwoo/Downloads/javacv-0.7-bin/javacv-bin/javacv-windows-x86_64.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/inwoo/Downloads/javacv-0.7-cppjars/javacv-cppjars/opencv-2.4.8-windows-x86_64.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
