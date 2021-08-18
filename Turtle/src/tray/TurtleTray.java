@@ -28,16 +28,27 @@ public class TurtleTray{
 			});
 			popup.add(item);
 			
+			item = new MenuItem("테스트");
+			item.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					trayIcon.displayMessage("Title",  "거북목", TrayIcon.MessageType.INFO);
+					trayIcon.displayMessage("Title",  "거북목 아님", TrayIcon.MessageType.INFO);
+				}
+			});
+			popup.add(item);
+			
 			item = new MenuItem("Close");
 			item.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					tray.remove(trayIcon);
+					System.exit(0);
 				}
 			});
 			popup.add(item);
 			try {
 				tray.add(trayIcon);
+				trayIcon.displayMessage("Title", "거북목 방지 프로그램이\n백그라운드에서 동작하고 있습니다", TrayIcon.MessageType.NONE);
 			} catch (AWTException e) {
 				System.err.println("트레이에 추가할 수 없습니다");
 			}
