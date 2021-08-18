@@ -58,6 +58,6 @@ public class TurtleTray{
 			System.err.println("트레이를 지원하지 않습니다");
 		}
 		
-		new Cam();
+		// new Cam();
 	}
 }
