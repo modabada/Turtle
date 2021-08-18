@@ -10,6 +10,8 @@ import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import camera.Cam;
+
 public class TurtleTray{
 	public TurtleTray() {
 		final SystemTray tray = SystemTray.getSystemTray();
@@ -23,7 +25,7 @@ public class TurtleTray{
 			item.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					trayIcon.displayMessage("Title", "doc", TrayIcon.MessageType.WARNING);
+					trayIcon.displayMessage("이상 자세가 감지되었습니다", "혹시 지금 얼굴을 너무 앞으로 내밀지는 않으셨나요?", TrayIcon.MessageType.WARNING);
 				}
 			});
 			popup.add(item);
@@ -32,7 +34,7 @@ public class TurtleTray{
 			item.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					trayIcon.displayMessage("Title",  "거북목", TrayIcon.MessageType.INFO);
+					trayIcon.displayMessage("Debug",  "거북목 감지됨", TrayIcon.MessageType.INFO);
 					trayIcon.displayMessage("Title",  "거북목 아님", TrayIcon.MessageType.INFO);
 				}
 			});
@@ -55,5 +57,7 @@ public class TurtleTray{
 		} else {
 			System.err.println("트레이를 지원하지 않습니다");
 		}
+		
+		new Cam();
 	}
 }

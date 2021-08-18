@@ -24,6 +24,7 @@ public class Cam {
 		public void run() {
 			cam.read(img);
 			saveImage();
+			sendPython();
 		}
 	};
 
@@ -46,24 +47,30 @@ public class Cam {
 		Imgcodecs.imwrite(file, img);
 	}
 
-	public void sendPython() throws Exception {
+	public void sendPython() {
 		String command = "C:\\Users\\inwoo\\anaconda3\\envs\\PY_AI\\python.exe"; // 명령어
 		String arg1 = "./loadModel.py"; // 인자
 		ProcessBuilder builder = new ProcessBuilder(command, arg1);
-		Process process = builder.start();
-		int exitVal = process.waitFor(); // 자식 프로세스가 종료될 때까지 기다림
-		if (exitVal != 0) {
-			throw new Exception();
-		}
-		BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(), "euc-kr")); // 서브 프로세스가
-																											// 출력하는 내용을
-																											// 받기 위해
-		if (br.readLine() == "[1]") {
-			System.out.println("거북목");
-		} else if (br.readLine() == "[0]") {
-			System.out.println("거북목 아님");
-		} else {
-			System.out.println(br.readLine());
+		try {
+			Process process = builder.start();
+			int exitVal = process.waitFor(); // 자식 프로세스가 종료될 때까지 기다림
+			if (exitVal != 0) {
+				throw new Exception();
+			}
+			BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(), "euc-kr")); // 서브
+																												// 프로세스가
+																												// 출력하는
+																												// 내용을
+																												// 받기 위해
+			if (br.readLine() == "[1]") {
+				System.out.println("거북목");
+			} else if (br.readLine() == "[0]") {
+				System.out.println("거북목 아님");
+			} else {
+				System.out.println(br.readLine());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
