@@ -27,20 +27,17 @@ public class Cam {
 		}
 	};
 
-	public void setup() {
+	public Cam() {
 		cam = new VideoCapture(0);
 		cam.set(Videoio.CAP_PROP_FRAME_WIDTH, 320);
 		cam.set(Videoio.CAP_PROP_FRAME_HEIGHT, 180);
 
 		if (!cam.isOpened()) {
+			System.out.println("Eror");
 			System.exit(1);
 		}
-		
+
 		timer.schedule(timeTask, 0, 4000);
-	}
-	
-	public void loop() {
-		
 	}
 
 	public void saveImage() {
@@ -48,30 +45,26 @@ public class Cam {
 		String file = "./Resources/temp/test.jpg";
 		Imgcodecs.imwrite(file, img);
 	}
-	
+
 	public void sendPython() throws Exception {
-		String command = "C:\\Users\\inwoo\\anaconda3\\envs\\PY_AI\\python.exe";  // 명령어
-		String arg1 = "C:\\Users\\inwoo\\Desktop\\Coding\\PY_AI\\loadModel.py"; // 인자
+		String command = "C:\\Users\\inwoo\\anaconda3\\envs\\PY_AI\\python.exe"; // 명령어
+		String arg1 = "./loadModel.py"; // 인자
 		ProcessBuilder builder = new ProcessBuilder(command, arg1);
 		Process process = builder.start();
-		int exitVal = process.waitFor();  // 자식 프로세스가 종료될 때까지 기다림
-		if(exitVal != 0) {
+		int exitVal = process.waitFor(); // 자식 프로세스가 종료될 때까지 기다림
+		if (exitVal != 0) {
 			throw new Exception();
 		}
-		BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(), "euc-kr")); // 서브 프로세스가 출력하는 내용을 받기 위해
+		BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(), "euc-kr")); // 서브 프로세스가
+																											// 출력하는 내용을
+																											// 받기 위해
 		if (br.readLine() == "[1]") {
 			System.out.println("거북목");
-		}
-		else if (br.readLine() == "[0]") {
+		} else if (br.readLine() == "[0]") {
 			System.out.println("거북목 아님");
-		}
-		else {
+		} else {
 			System.out.println(br.readLine());
 		}
-		
-	}
 
-	public static void main(String[] args) {
-		new Cam().setup();
 	}
 }

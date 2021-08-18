@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import camera.Cam;
 import tray.TurtleTray;
 
 public class GUI extends JFrame {
@@ -44,6 +45,7 @@ public class GUI extends JFrame {
 			break;
 		case "Running":
 			new TurtleTray();
+			new Cam();
 			setVisible(false);
 			break;
 		}
