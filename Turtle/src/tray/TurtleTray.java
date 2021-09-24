@@ -15,7 +15,7 @@ import camera.Cam;
 public class TurtleTray{
 	public TurtleTray() {
 		final SystemTray tray = SystemTray.getSystemTray();
-		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Turtle.png"));
+		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("Turtle_Icon.png"));
 		PopupMenu popup = new PopupMenu();
 		final TrayIcon trayIcon = new TrayIcon(image, "Turtle", popup);
 		MenuItem item;
@@ -35,7 +35,7 @@ public class TurtleTray{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					trayIcon.displayMessage("Debug",  "°ÅºÏ¸ñ °¨ÁöµÊ", TrayIcon.MessageType.INFO);
-					trayIcon.displayMessage("Title",  "°ÅºÏ¸ñ ¾Æ´Ô", TrayIcon.MessageType.INFO);
+					trayIcon.displayMessage("Debug",  "°ÅºÏ¸ñ ¾Æ´Ô", TrayIcon.MessageType.INFO);
 				}
 			});
 			popup.add(item);
